@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CyberGuard - Cyber Security Services HTML Template</title>
+    <link rel="icon" href="images/icon.webp" type="image/gif" sizes="16x16">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="CyberGuard - Cyber Security Services HTML Template" name="description">
+    <meta content="" name="keywords">
+    <meta content="" name="author">
+    <!-- CSS Files
+    ================================================== -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap">
+    <link href="css/plugins.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- color scheme -->
+    <link id="colors" href="css/colors/scheme-1.css" rel="stylesheet" type="text/css">
+
+    <!-- ======== Inline Styles (only for this page) ======== -->
+    <style>
+      /* Spacing helpers */
+      .py-60{padding-top:60px;padding-bottom:60px;}
+      .py-70{padding-top:70px;padding-bottom:70px;}
+
+      /* Pills & Chips */
+      .pill{background:#f2fbff;border:1px solid #cfefff;color:#12132c;
+            padding:.35rem .7rem;border-radius:999px;font-weight:700;font-size:.85rem;}
+      .pill-invert{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#ffffff;
+                   padding:.35rem .7rem;border-radius:999px;font-weight:700;font-size:.85rem;}
+      .chip{background:#ffffff;border:1px solid #e6f2f8;color:#12132c;
+            padding:.35rem .6rem;border-radius:999px;font-weight:700;font-size:.8rem;}
+
+      /* Tiles (white) */
+      .tile-white,.card-tile{
+        background:#ffffff;border:1px solid #e6f2f8;border-radius:18px;
+        padding:24px; transition:all .25s ease;
+      }
+      .tile-white:hover,.card-tile:hover{border-color:#1ec6ff; box-shadow:0 16px 40px rgba(30,198,255,.14);}
+      .card-tile h4,.card-tile h5,.tile-white h4,.tile-white h5{color:#12132c;font-weight:800;}
+
+      /* Tiles (dark) */
+      .tile-dark{
+        background:#0e1a2b;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:24px;color:#ffffff;
+        transition:all .25s ease;
+      }
+      .tile-dark:hover{box-shadow:0 16px 40px rgba(30,198,255,.18); border-color:rgba(30,198,255,.45);}
+      .tile-dark h4,.tile-dark h5{color:#ffffff;font-weight:800;}
+
+      /* List blocks */
+      .list-block .d-flex{gap:.75rem; margin-bottom:12px;}
+      .list-ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+                background:radial-gradient(circle at 30% 30%, rgba(30,198,255,.22), rgba(30,198,255,.08));font-size:18px;}
+
+      /* Checklists */
+      .checklist{list-style:none; padding-left:0; margin:0;}
+      .checklist li{position:relative; padding-left:26px; margin:8px 0; color:#12132c;}
+      .checklist li:before{content:"✔"; position:absolute; left:0; top:0; color:#1ec6ff; font-weight:900;}
+
+      .checklist-invert{list-style:none; padding-left:0; margin:0;}
+      .checklist-invert li{position:relative; padding-left:26px; margin:8px 0; color:#ffffff;}
+      .checklist-invert li:before{content:"✔"; position:absolute; left:0; top:0; color:#1ec6ff; font-weight:900;}
+
+      /* Mini cards (Who We Serve) with hover animations */
+      .mini-card{background:#ffffff; border:1px solid #e6f2f8; border-radius:14px; padding:20px; transition:all .25s ease;}
+      .mini-card:hover{border-color:#1ec6ff; box-shadow:0 12px 28px rgba(30,198,255,.14);}
+      .mini-ico{font-size:28px; margin-bottom:8px;}
+
+      .mini-card-dark{
+        background:#0e1a2b; border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:25px 15px;
+        color:#ffffff; transition:all 0.3s ease; cursor:pointer;
+      }
+      .mini-card-dark .mini-ico{font-size:36px; margin-bottom:12px; color:#1ec6ff; transition:transform .3s ease, color .3s ease;}
+      .mini-card-dark:hover{
+        transform:translateY(-10px) scale(1.05);
+        box-shadow:0 12px 30px rgba(30,198,255,0.25);
+        background:#1b223b;
+      }
+      .mini-card-dark:hover .mini-ico{transform:scale(1.2); color:#ffffff;}
+
+      /* CTA */
+      .cta-tile{background:#ffffff;border:1px solid #e6f2f8;border-radius:18px;padding:28px;text-align:center;}
+      .cta-tile-dark{background:#0e1a2b;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px;}
+      .btn-main{
+        background:#1ec6ff; color:#12132c; border:none; border-radius:999px;
+        padding:10px 18px; font-weight:900; transition:all .25s ease; text-decoration:none; display:inline-block;
+      }
+      .btn-main:hover{filter:brightness(0.95); transform:translateY(-1px);}
+      .btn-main.btn-line{background:#12132c; color:#ffffff;}
+      .btn-main.btn-line:hover{opacity:.9;}
+
+      /* Subheader background fix: make the hero image responsive & not oversized */
+      #subheader.section-dark{
+        background:#12132c url('images/city/oak.jpg') center center / cover no-repeat;
+        color:#ffffff; position:relative;
+      }
+      #subheader .gradient-edge-top{
+        position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(18,19,44,0.55);
+      }
+      #subheader .container{position:relative; z-index:2;}
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="float-text show-on-scroll">
+            <span><a href="#">Scroll to top</a></span>
+        </div>
+        <div class="scrollbar-v show-on-scroll"></div>
+
+        <!-- preloader begin -->
+        <div id="de-loader"></div>
+        <!-- preloader end -->
+
+        <!-- header begin -->
+        <header>
+            <div id="topbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-between xs-hide">
+                                <div class="d-flex">
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-location-pin"></i>8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615</a></div>
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-phone"></i>+1 919.878.9988</a></div>
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-envelope"></i>cat@trianglefingerprinting.com</a></div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="social-icons">
+                                        <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-pinterest fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="de-flex sm-pt10">
+                            <div class="de-flex-col">
+                                <!-- logo begin -->
+                                <div id="logo">
+                                    <a href="index.html">
+                                        <img class="logo-main" src="images/badge/2.webp" width="80" alt="">
+                                        <img class="logo-mobile" src="images/badge/2.webp" width="80" alt="">
+                                    </a>
+                                </div>
+                                <!-- logo end -->
+                            </div>
+                            <div class="de-flex-col header-col-mid">
+                                <!-- mainemenu begin -->
+                                <ul id="mainmenu">
+                                    <li><a class="menu-item" href="index.html">Home</a></li>
+                                    <li><a class="menu-item" href="about.html">About Us</a></li>
+                                    <li><a class="menu-item" href="services.html">Services</a></li>
+                                    <li><a class="menu-item" href="location.html">Locations</a>
+                                        <ul>
+                                            <li><a href="oak.html">Oak City</a></li>
+                                            <li><a href="durham.html">Durham City</a></li>
+                                            <li><a href="hill.html">Hill City</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="menu-item" href="contact.html">Contact Us</a></li>
+                                </ul>
+                                <!-- mainmenu end -->
+                            </div>
+                            <div class="de-flex-col">
+                                <div class="menu_side_area">
+                                    <a href="pricing.html" class="btn-main fx-slide btn-line me-2" style="background: transparent;"><span>Explore Pricing</span></a>
+                                    <span id="menu-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header end -->
+
+        <!-- =================== Subheader (image fixed to cover) =================== -->
+        <section id="subheader" class="section-dark bg-dark text-light relative">
+            <div class="gradient-edge-top"></div>
+            <div class="container relative z-2">
+                <div class="row gy-4 gx-5 align-items-center">
+                    <div class="spacer-double sm-hide"></div>
+                    <div class="col-lg-6">
+                        <h1 class="mb-0 wow fadeInUp" data-wow-delay=".2s">Oak City</h1>
+                        <ul class="crumb wow fadeInUp">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Oak City</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== OAK CITY CONTENT (ALTERNATING WHITE/DARK) =================== -->
+
+        <!-- HERO — WHITE -->
+        <section class="py-70 wow fadeIn" style="background:#ffffff;color:#12132c;">
+          <div class="container">
+            <div class="text-center">
+              <h1 style="font-weight:900;letter-spacing:.3px;">
+                Oak City <span style="color:#1ec6ff;">Fingerprinting</span>
+              </h1>
+              <p class="lead mt-2" style="max-width:820px;margin:0 auto;">
+                Professional fingerprinting services in Raleigh — In-Office • Mobile Service • Live Scan • Traditional Ink
+              </p>
+              <div class="d-inline-flex flex-wrap justify-content-center gap-2 mt-3">
+                <span class="chip">In-Office Service</span>
+                <span class="chip">Mobile Available</span>
+                <span class="chip">Same-Day Appointments</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- OFFICE + MAP — DARK -->
+        <section class="py-70 wow fadeInUp" style="background:#12132c;">
+          <div class="container">
+            <div class="row g-4 align-items-stretch">
+              <!-- Office Info -->
+              <div class="col-lg-6">
+                <div class="tile-dark h-100">
+                  <h4 class="mb-3">Our Raleigh Office</h4>
+                  <p class="mb-4">
+                    Our flagship location in Raleigh offers both in-office and mobile fingerprinting services. With Live Scan and
+                    traditional ink capabilities, we serve professionals, law firms, real estate agents, and healthcare workers
+                    throughout the Oak City area.
+                  </p>
+
+                  <div class="list-block text-light">
+                    <div class="d-flex">
+                      <div class="list-ico">📍</div>
+                      <div>
+                        <div class="fw-bold">8480 Suite 200 Honeycutt Rd.</div>
+                        Raleigh, NC 27615
+                      </div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="list-ico">🕒</div>
+                      <div>
+                        <div class="fw-bold">Monday–Friday</div>
+                        9:00 AM – 5:00 PM
+                      </div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="list-ico">📞</div>
+                      <div>+1 919.878.9988</div>
+                    </div>
+                    <div class="d-flex">
+                      <div class="list-ico">✉️</div>
+                      <div>cat@trianglefingerprinting.com</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap gap-2 mt-3">
+                    <span class="pill-invert">In-Office Service</span>
+                    <span class="pill-invert">Mobile Available</span>
+                    <span class="pill-invert">Same-Day</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Map Placeholder -->
+              <div class="col-lg-6">
+                <div class="tile-dark h-100 d-flex align-items-center justify-content-center text-center">
+                  <div class="w-100">
+                    <div class="mb-2" style="font-size:40px;">🗺️</div>
+                    <h5 class="mb-1">Interactive Map</h5>
+                    <div class="text-muted small">8480 Suite 200 Honeycutt Rd., Raleigh, NC 27615</div>
+                    <div class="ratio ratio-16x9 mt-3 rounded" style="background:#0f1625;border:1px dashed rgba(255,255,255,.2);">
+                      <!-- replace with embedded map -->
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7104.962683292598!2d-78.62327334375242!3d35.8960251054709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b8bb3c63ac23341%3A0x3ece990602b49728!2sSecurity%20Compliance%20Academy!5e0!3m2!1sen!2s!4v1758969200536!5m2!1sen!2s" width="600" height="450" style="object-fit:cover;width:100%;height:100%;border-radius:8px; border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SERVICES — WHITE -->
+        <section class="py-70 wow fadeInUp" style="background:#ffffff;">
+          <div class="container">
+            <h3 class="text-center mb-4" style="color:#12132c;font-weight:900;">Services Available</h3>
+            <div class="row g-4">
+              <div class="col-md-6 col-lg-4">
+                <div class="tile-white h-100">
+                  <h5 class="mb-3">Live Scan Digital</h5>
+                  <ul class="checklist">
+                    <li>FBI electronic submission</li>
+                    <li>Immigration (USCIS)</li>
+                    <li>Federal employment</li>
+                    <li>TSA PreCheck / Global Entry</li>
+                    <li>Out-of-state licensing</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="tile-white h-100">
+                  <h5 class="mb-3">Traditional Ink</h5>
+                  <ul class="checklist">
+                    <li>NC SBI requirements</li>
+                    <li>Healthcare licensing</li>
+                    <li>Real estate licensing</li>
+                    <li>Teacher certification</li>
+                    <li>State employment</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="tile-white h-100">
+                  <h5 class="mb-3">Mobile Notary</h5>
+                  <ul class="checklist">
+                    <li>Document notarization</li>
+                    <li>Loan signings</li>
+                    <li>Legal documents</li>
+                    <li>Immigration I-9</li>
+                    <li>Business documents</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHO WE SERVE — DARK with hover animations -->
+        <section class="py-70 wow fadeInUp" style="background:#12132c;">
+          <div class="container">
+            <h3 class="text-center mb-5 text-white" style="font-weight:900;">Who We Serve in Oak City</h3>
+            <div class="row g-4 text-center">
+              <div class="col-6 col-md-3">
+                <div class="mini-card-dark h-100">
+                  <div class="mini-ico">⚖️</div>
+                  <div class="fw-bold">Legal Professionals</div>
+                  <div class="small">Law firms, attorneys, immigration cases</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="mini-card-dark h-100">
+                  <div class="mini-ico">🏢</div>
+                  <div class="fw-bold">Real Estate</div>
+                  <div class="small">Agents, brokers, title companies</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="mini-card-dark h-100">
+                  <div class="mini-ico">🏥</div>
+                  <div class="fw-bold">Healthcare</div>
+                  <div class="small">Nurses, doctors, healthcare staff</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="mini-card-dark h-100">
+                  <div class="mini-ico">💼</div>
+                  <div class="fw-bold">Business</div>
+                  <div class="small">Corporate employees, contractors</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- APPOINTMENT INFO — WHITE -->
+        <section class="py-70 wow fadeInUp" style="background:#ffffff;">
+          <div class="container">
+            <h3 class="text-center mb-4" style="color:#12132c;font-weight:900;">Appointment Information</h3>
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="tile-white h-100">
+                  <h5 class="mb-3">Office Appointments</h5>
+                  <ul class="checklist">
+                    <li>Accommodates 5–15 people comfortably</li>
+                    <li>Live Scan and ink services available</li>
+                    <li>Same-day appointments often available</li>
+                    <li>Professional, private environment</li>
+                    <li>Convenient parking available</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tile-white h-100">
+                  <h5 class="mb-3">Mobile Service</h5>
+                  <ul class="checklist">
+                    <li>Available throughout Raleigh area</li>
+                    <li>Law firm and office visits</li>
+                    <li>Groups of 20+ people</li>
+                    <li>Corporate and healthcare facilities</li>
+                    <li>Travel fee based on location</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA — DARK -->
+        <section class="py-70 wow fadeInUp" style="background:#12132c;">
+          <div class="container">
+            <div class="cta-tile-dark">
+              <div class="row align-items-center g-3">
+                <div class="col-lg-8">
+                  <h3 class="mb-1 text-white" style="font-weight:900;">Schedule Your Oak City Appointment</h3>
+                  <p class="mb-0 text-light">Book online in minutes or contact us directly for groups and mobile service.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                  <a href="pricing.html" class="btn-main me-2"><span>Book Online Now</span></a>
+                  <a href="tel:+19198789988" class="btn-main btn-line"><span>Call +1 919.878.9988</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- footer begin -->
+        <footer class="section-dark">
+          <div class="container">
+            <div class="row gx-5">
+              <div class="col-lg-4 col-sm-6">
+                <img src="images/badge/11.webp" width="80" class="logo-footer" alt="">
+                <div class="spacer-20"></div>
+                <p>At Triangle Fingerprinting, we deliver professional, high‑quality fingerprinting, notary, and document services. From live scan to apostille, our team helps you move forward quickly and securely.</p>
+
+                <div class="social-icons mb-sm-30">
+                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                  <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-sm-12 order-lg-1 order-sm-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div class="widget">
+                      <h5>Company</h5>
+                      <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-7">
+                    <div class="widget">
+                      <h5>Our Services</h5>
+                      <ul>
+                        <li><a href="service-single.html">Network Security</a></li>
+                        <li><a href="service-single.html">Data Encryption</a></li>
+                        <li><a href="service-single.html">Identity & Access</a></li>
+                        <li><a href="service-single.html">Security Monitoring</a></li>
+                        <li><a href="service-single.html">Backup & Recovery</a></li>
+                        <li><a href="service-single.html">Security Configuration</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
+                <div class="widget">
+                  <h5>Contact Us</h5>
+
+                  <div class="fw-bold text-white">
+                    <i class="icofont-location-pin me-2 id-color"></i>Head Office
+                  </div>
+                  8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615
+
+                  <div class="spacer-20"></div>
+
+                  <div class="fw-bold text-white">
+                    <i class="icofont-phone me-2 id-color"></i>Call Us
+                  </div>
+                  +1 919.878.9988
+
+                  <div class="spacer-20"></div>
+
+                  <div class="fw-bold text-white">
+                    <i class="icofont-envelope me-2 id-color"></i>Email Us
+                  </div>
+                  cat@trianglefingerprinting.com
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subfooter">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="de-flex">
+                    <div class="de-flex-col">
+                      &copy; 2025 - Triangle Fingerptinting
+                    </div>
+                    <ul class="menu-simple">
+                      <li><a href="#">Terms &amp; Conditions</a></li>
+                      <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- footer end -->
+    </div>
+
+    <!-- Javascript Files
+    ================================================== -->
+    <script src="js/plugins.js"></script>
+    <script src="js/designesia.js"></script>
+
+</html>

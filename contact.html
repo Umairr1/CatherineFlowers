@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Us | Triangle Fingerprinting</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Contact Triangle Fingerprinting for mobile and in-office fingerprinting, group events, or mobile on-site appointments.">
+  <link rel="icon" href="images/icon.webp" type="image/gif" sizes="16x16">
+
+  <!-- Site CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap">
+  <link href="css/plugins.css" rel="stylesheet">
+  <link href="css/swiper.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link id="colors" href="css/colors/scheme-1.css" rel="stylesheet">
+
+  <!-- Page styles (scoped) -->
+  <style>
+    :root{
+      --ink:#12132c;
+      --muted:#6f7a86;
+      --line:#e9f2f7;
+      --soft:#fbfeff;
+      --accent:#1ec6ff;
+      --accent-08:rgba(30,198,255,.08);
+      --accent-14:rgba(30,198,255,.14);
+      --accent-22:rgba(30,198,255,.22);
+      --r-lg:18px; --r-sm:12px;
+      --shadow: 0 10px 28px rgba(16,31,56,.08);
+      --shadow-lg: 0 18px 56px rgba(16,31,56,.14);
+    }
+
+    /* Keep topbar white with dark text */
+    #topbar{background:#fff;}
+    #topbar a, #topbar i{color:var(--ink)!important;}
+
+    /* Keep your image subheader */
+    #subheader.section-dark{
+      background:#12132c url('images/city/raleigh.jpg') center/cover no-repeat; color:#fff; position:relative;
+    }
+    #subheader .gradient-edge-top{position:absolute; inset:0; background:rgba(10,14,28,.55);}
+    #subheader .container{position:relative; z-index:2;}
+
+    /* ===== Contact (fully redesigned) ===== */
+    .contact-shell{background:#fff;}
+    .contact-head h2{color:var(--ink); font-weight:900; letter-spacing:.2px;}
+    .contact-head p{color:var(--muted);}
+
+    .card-fx{
+      background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:28px;
+      box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .card-fx:hover{transform:translateY(-2px); box-shadow:var(--shadow-lg); border-color:var(--accent);}
+
+    /* Chips (inquiry type) */
+    .chipx{
+      position:relative; border:1px solid var(--line); color:var(--ink); background:#fff;
+      border-radius:999px; padding:.5rem 1rem; font-weight:800; letter-spacing:.15px; cursor:pointer;
+      transition:border-color .2s, background .2s, color .2s, transform .15s;
+    }
+    .chipx:hover{border-color:var(--accent);}
+    .chipx.active{background:var(--accent); border-color:var(--accent); color:var(--ink); box-shadow:0 14px 36px var(--accent-14); transform:translateY(-1px);}
+
+    /* Input rows */
+    .fx-row{display:grid; grid-template-columns:1fr; gap:14px;}
+    @media(min-width:768px){ .fx-row{grid-template-columns:1fr 1fr;} }
+
+    /* Floating inputs with animated outline */
+    .field{
+      position:relative; isolation:isolate;
+    }
+    .field .ico{
+      position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:18px; opacity:.65; pointer-events:none;
+    }
+    .field .control{
+      width:100%; height:56px; border:1px solid var(--line); border-radius:var(--r-sm); background:#fff; color:var(--ink);
+      padding:14px 14px 0 46px; transition:border-color .2s, box-shadow .2s, background .2s, transform .06s;
+    }
+    .field textarea.control{height:auto; min-height:132px; padding:18px 14px 12px 46px; resize:vertical;}
+    .field .label{
+      position:absolute; left:46px; top:50%; transform:translateY(-50%); color:var(--muted);
+      transition:all .18s ease; pointer-events:none; background:#fff; padding:0 .25rem;
+    }
+    .field.filled .label,
+    .field:focus-within .label{top:0; transform:translateY(-55%); font-size:.85rem; color:#0e2237;}
+    .field:focus-within .control{border-color:var(--accent); box-shadow:0 0 0 .22rem var(--accent-08);}
+    .control:hover{border-color:#d7eaf4;}
+
+    /* Custom select (pure CSS) */
+    .select-wrap{position:relative;}
+    .select-wrap:after{
+      content:""; position:absolute; right:14px; top:50%; transform:translateY(-50%) rotate(0);
+      border:6px solid transparent; border-top-color:#677b8a; transition:transform .2s, border-top-color .2s; pointer-events:none;
+    }
+    .select-wrap.open:after{transform:translateY(-50%) rotate(180deg); border-top-color:#0f2135;}
+    .select-wrap .control{appearance:none; -webkit-appearance:none; background-image:none;}
+
+    /* Buttons with ripple */
+    .btn-accent{
+      position:relative; overflow:hidden; background:var(--accent); color:var(--ink); border:none; border-radius:999px; padding:13px 22px; font-weight:900;
+      transition:filter .15s, transform .15s;
+    }
+    .btn-accent:hover{filter:brightness(.98); transform:translateY(-1px);}
+    .btn-accent:active{transform:translateY(0);}
+    .btn-accent .rip{position:absolute; border-radius:50%; transform:scale(0); background:rgba(255,255,255,.45); animation:rip .6s linear;}
+    @keyframes rip{to{transform:scale(20); opacity:0;}}
+
+    .btn-darkx{background:var(--ink); color:#fff; border:none; border-radius:999px; padding:13px 20px; font-weight:900;}
+    .btn-darkx:hover{opacity:.92;}
+
+    /* Submit rail */
+    .submit-rail{
+      display:flex; align-items:center; gap:12px; justify-content:space-between; padding:12px 14px;
+      border:1px dashed var(--line); border-radius:14px; background:var(--soft);
+    }
+
+    /* Right rail icons */
+    .mini-ico{
+      width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      background:radial-gradient(circle at 35% 30%, var(--accent-22), rgba(30,198,255,.05)); font-size:18px; color:#0e2036;
+    }
+    .muted{color:var(--muted);}
+    @media(min-width:992px){ .sticky-col{position:sticky; top:26px;} }
+
+    .under-accent{display:inline-block; width:44px; height:3px; background:var(--accent); border-radius:999px; margin-top:6px;}
+    .divider{height:1px; width:100%; background:linear-gradient(90deg, transparent, var(--line), transparent); margin:18px 0;}
+    .py-70{padding:70px 0;}
+  </style>
+</head>
+
+<body>
+<div id="wrapper">
+  <!-- ===== Topbar (white/dark) ===== -->
+  <div id="topbar">
+    <div class="container">
+      <div class="row"><div class="col-lg-12">
+        <div class="d-flex justify-content-between xs-hide">
+          <div class="d-flex">
+            <div class="topbar-widget me-3"><a href="#"><i class="icofont-location-pin"></i>8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615</a></div>
+            <div class="topbar-widget me-3"><a href="tel:+19198789988"><i class="icofont-phone"></i>+1 919.878.9988</a></div>
+            <div class="topbar-widget me-3"><a href="mailto:cat@trianglefingerprinting.com"><i class="icofont-envelope"></i>cat@trianglefingerprinting.com</a></div>
+          </div>
+          <div class="d-flex">
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
+              <a href="#"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
+              <a href="#"><i class="fa-brands fa-youtube fa-lg"></i></a>
+              <a href="#"><i class="fa-brands fa-pinterest fa-lg"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ===== Header (unchanged) ===== -->
+  <header>
+    <div class="container">
+      <div class="row"><div class="col-md-12">
+        <div class="de-flex sm-pt10">
+          <div class="de-flex-col">
+            <div id="logo">
+              <a href="index.html">
+                <img class="logo-main" src="images/logo-white.webp" width="250" alt="">
+                <img class="logo-mobile" src="images/logo-white.webp" width="80" alt="">
+              </a>
+            </div>
+          </div>
+          <div class="de-flex-col header-col-mid">
+            <ul id="mainmenu">
+              <li><a class="menu-item" href="index.html">Home</a></li>
+              <li><a class="menu-item" href="about.html">About Us</a></li>
+              <li><a class="menu-item" href="services.html">Services</a></li>
+              <li><a class="menu-item" href="location.html">Locations</a>
+                <ul>
+                  <li><a href="oak.html">Oak City</a></li>
+                  <li><a href="durham.html">Durham City</a></li>
+                  <li><a href="hill.html">Hill City</a></li>
+                </ul>
+              </li>
+              <li><a class="menu-item" href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="de-flex-col">
+            <div class="menu_side_area">
+              <a href="pricing.html" class="btn-main fx-slide btn-line me-2" style="background:transparent;"><span>Explore Pricing</span></a>
+              <span id="menu-btn"></span>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </header>
+
+  <!-- ===== Subheader (unchanged) ===== -->
+  <section id="subheader" class="section-dark text-light relative">
+    <div class="gradient-edge-top"></div>
+    <div class="container relative z-2">
+      <div class="row gy-4 gx-5 align-items-center">
+        <div class="col-lg-8">
+          <h1 class="mb-0" style="font-weight:900;">Contact Us</h1>
+          <p class="mb-0 text-light" style="max-width:780px;">Questions, bookings, or group events—send a note and we’ll get right back to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT CONTENT (REDESIGN) ===== -->
+  <section class="py-70 contact-shell">
+    <div class="container">
+
+      <!-- Head -->
+      <div class="row align-items-end g-4 contact-head mb-2">
+        <div class="col-xl-7">
+          <h2 class="mb-1">Send Us a Message</h2>
+          <span class="under-accent"></span>
+          <p class="mt-3 mb-0">Tell us what you need—mobile or in-office fingerprinting, group events, or a quick question.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Form -->
+        <div class="col-lg-7">
+          <div class="card-fx">
+            <form id="contactForm" novalidate>
+              <input type="hidden" id="inquiryType" name="inquiryType" value="general">
+              
+              <div class="fx-row">
+                <div class="field" data-field>
+                  <span class="ico">👤</span>
+                  <input class="control" id="fullName" required>
+                  <label class="label" for="fullName">Full Name *</label>
+                </div>
+
+                <div class="field" data-field>
+                  <span class="ico">✉️</span>
+                  <input type="email" class="control" id="email" required>
+                  <label class="label" for="email">Email Address *</label>
+                </div>
+              </div>
+
+              <div class="fx-row">
+                <div class="field" data-field>
+                  <span class="ico">📞</span>
+                  <input type="tel" class="control" id="phone" inputmode="tel">
+                  <label class="label" for="phone">Phone Number</label>
+                </div>
+
+                <div class="field" data-field>
+                  <span class="ico">🏢</span>
+                  <input class="control" id="org">
+                  <label class="label" for="org">Organization</label>
+                </div>
+              </div>
+
+              <div class="fx-row">
+                <!-- Custom select: service -->
+                <div class="field select-wrap" id="selService" data-field>
+                  <span class="ico">🧾</span>
+                  <select class="control" id="service">
+                    <option value="" selected disabled></option>
+                    <option>Live Scan (digital)</option>
+                    <option>Traditional Ink (FD-258)</option>
+                    <option>Mobile On-Site (group)</option>
+                    <option>Notary / I-9</option>
+                    <option>Other / Not sure</option>
+                  </select>
+                  <label class="label" for="service">Desired Service</label>
+                </div>
+
+                <!-- Custom select: city -->
+                <div class="field select-wrap" id="selCity" data-field>
+                  <span class="ico">📍</span>
+                  <select class="control" id="city">
+                    <option value="" selected disabled></option>
+                    <option>Raleigh (Oak City)</option>
+                    <option>Durham (Bull City)</option>
+                    <option>Chapel Hill (Hill City)</option>
+                    <option>Cary / RTP</option>
+                    <option>Other (specify in message)</option>
+                  </select>
+                  <label class="label" for="city">City / Location</label>
+                </div>
+              </div>
+
+              <div class="fx-row">
+                <div class="field" data-field>
+                  <span class="ico">📅</span>
+                  <input type="date" class="control" id="datePref">
+                  <label class="label" for="datePref">Preferred Date</label>
+                </div>
+
+                <div class="field select-wrap" id="selTime" data-field>
+                  <span class="ico">⏰</span>
+                  <select class="control" id="timeWindow">
+                    <option value="" selected></option>
+                    <option>Morning (9–12)</option>
+                    <option>Afternoon (12–3)</option>
+                    <option>Late Afternoon (3–5)</option>
+                    <option>Evening (after 5, if available)</option>
+                  </select>
+                  <label class="label" for="timeWindow">Preferred Time Window</label>
+                </div>
+
+                <!-- Group size (revealed when "Group" pill selected) -->
+                <div class="field d-none" id="groupSizeWrap" data-field>
+                  <span class="ico">👥</span>
+                  <input type="number" min="2" class="control" id="groupSize">
+                  <label class="label" for="groupSize">Estimated Group Size</label>
+                </div>
+              </div>
+
+              <div class="field" data-field>
+                <span class="ico">💬</span>
+                <textarea class="control" id="message" required></textarea>
+                <label class="label" for="message">Message *</label>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="submit-rail">
+                <div class="small muted">We typically reply the same business day.</div>
+                <div class="d-flex gap-2">
+                  <button type="submit" class="btn-accent" id="sendBtn">
+                    <span>Send Message</span>
+                  </button>
+                  <a href="tel:+19198789988" class="btn-darkx">Call +1 919.878.9988</a>
+                </div>
+              </div>
+
+              <div class="form-text mt-2 muted">By submitting, you agree we may contact you about your request.</div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="col-lg-5">
+          <div class="card-fx sticky-col mb-4">
+            <h5 class="mb-1" style="font-weight:800;color:var(--ink);">Office Information</h5>
+            <span class="under-accent"></span>
+            <div class="d-flex align-items-start gap-3 mt-3 mb-3">
+              <div class="mini-ico">📍</div>
+              <div>
+                <div class="fw-bold">8480 Suite 200 Honeycutt Rd.</div>
+                Raleigh, NC 27615
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3">
+              <div class="mini-ico">🕒</div>
+              <div>
+                <div class="fw-bold">Monday–Friday</div>
+                9:00 AM – 5:00 PM <span class="d-block muted">Extended hours by appointment</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <h6 class="mb-2" style="font-weight:800;">Get In Touch</h6>
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="mini-ico">📞</div>
+              <div><a href="tel:+19198789988" class="text-decoration-none" style="color:var(--ink);">+1 919.878.9988</a>
+                <div class="small muted">Main office line</div></div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="mini-ico">✉️</div>
+              <div><a href="mailto:cat@trianglefingerprinting.com" class="text-decoration-none" style="color:var(--ink);">cat@trianglefingerprinting.com</a>
+                <div class="small muted">Scheduling & appointments</div></div>
+            </div>
+          </div>
+
+          <div class="card-fx sticky-col">
+            <h5 class="mb-1" style="font-weight:800;color:var(--ink);">Service Areas</h5>
+            <span class="under-accent"></span>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="chipx active">Raleigh</span>
+              <span class="chipx">Durham</span>
+              <span class="chipx">Chapel Hill</span>
+              <span class="chipx">Cary</span>
+              <span class="chipx">RTP</span>
+            </div>
+            <div class="ratio ratio-16x9 mt-3" style="background:#f4f7fb; border:1px solid var(--line); border-radius:12px;">
+              <!-- Keyless map to avoid API errors -->
+              <iframe title="Triangle Area Map" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.2%2C35.7%2C-78.5%2C36.2&layer=mapnik" style="border:0; border-radius:12px;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Footer (unchanged) ===== -->
+  <footer class="section-dark">
+    <div class="container">
+      <div class="row gx-5">
+        <div class="col-lg-4 col-sm-6">
+          <img src="images/logo-white.webp" width="250" class="logo-footer" alt="">
+          <div class="spacer-20"></div>
+          <p>At Triangle Fingerprinting, we deliver professional, high-quality fingerprinting, notary, and document services. From live scan to apostille, our team helps you move forward quickly and securely.</p>
+          <div class="social-icons mb-sm-30">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 order-lg-1 order-sm-2">
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="widget">
+                <h5>Company</h5>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="services.html">Our Services</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="widget">
+                <h5>Our Services</h5>
+                <ul>
+                  <li><a href="service-single.html">Network Security</a></li>
+                  <li><a href="service-single.html">Data Encryption</a></li>
+                  <li><a href="service-single.html">Identity & Access</a></li>
+                  <li><a href="service-single.html">Security Monitoring</a></li>
+                  <li><a href="service-single.html">Backup & Recovery</a></li>
+                  <li><a href="service-single.html">Security Configuration</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
+          <div class="widget">
+            <h5>Contact Us</h5>
+            <div class="fw-bold text-white">
+              <i class="icofont-location-pin me-2 id-color"></i>Head Office
+            </div>
+            8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615
+            <div class="spacer-20"></div>
+            <div class="fw-bold text-white">
+              <i class="icofont-phone me-2 id-color"></i>Call Us
+            </div>
+            +1 919.878.9988
+            <div class="spacer-20"></div>
+            <div class="fw-bold text-white">
+              <i class="icofont-envelope me-2 id-color"></i>Email Us
+            </div>
+            cat@trianglefingerprinting.com
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="subfooter">
+      <div class="container">
+        <div class="row"><div class="col-md-12">
+          <div class="de-flex">
+            <div class="de-flex-col">&copy; 2025 - Triangle Fingerptinting</div>
+            <ul class="menu-simple">
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- JS -->
+<script src="js/plugins.js"></script>
+<script src="js/designesia.js"></script>
+<script>
+  // Helper: mark fields "filled" for floating labels
+  document.querySelectorAll('[data-field]').forEach(f=>{
+    const input = f.querySelector('.control');
+    const set = ()=> f.classList.toggle('filled', !!input.value);
+    input.addEventListener('input', set);
+    input.addEventListener('blur', set);
+    set();
+  });
+
+  // Chips + conditional group size
+  (function(){
+    const pills = document.querySelectorAll('#inquiryPills .chipx');
+    const type  = document.getElementById('inquiryType');
+    const groupWrap = document.getElementById('groupSizeWrap');
+    pills.forEach(p=>p.addEventListener('click', ()=>{
+      pills.forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      const v = p.getAttribute('data-value');
+      type.value = v;
+      if(groupWrap) groupWrap.classList.toggle('d-none', v!=='group');
+    }));
+  })();
+
+  // Custom select chevron rotation
+  ['selService','selCity','selTime'].forEach(id=>{
+    const wrap=document.getElementById(id);
+    if(!wrap) return;
+    const ctl=wrap.querySelector('.control');
+    ctl.addEventListener('focus',()=>wrap.classList.add('open'));
+    ctl.addEventListener('blur',()=>wrap.classList.remove('open'));
+    ctl.addEventListener('change',()=>wrap.parentElement && wrap.classList.add('filled'));
+  });
+
+  // Ripple on primary button
+  document.getElementById('sendBtn').addEventListener('click',function(e){
+    const b=this, r=document.createElement('span');
+    const rect=b.getBoundingClientRect(), size=Math.max(rect.width, rect.height);
+    r.className='rip'; r.style.width=r.style.height=size+'px';
+    r.style.left=(e.clientX-rect.left-size/2)+'px'; r.style.top=(e.clientY-rect.top-size/2)+'px';
+    b.appendChild(r); setTimeout(()=>r.remove(),600);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Triangle Fingerprinting — Services</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Live Scan, FD-258 Ink Cards, Mobile Fingerprinting, FBI & State Background Checks, Notary & I-9, and Apostille services across the Triangle.">
+  <link rel="icon" href="images/icon.webp" type="image/webp" sizes="16x16">
+
+  <!-- Base CSS from your template -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/plugins.css" rel="stylesheet">
+  <link href="css/swiper.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link id="colors" href="css/colors/scheme-1.css" rel="stylesheet">
+
+  <!-- Page-specific styles (safe to keep inline) -->
+  <style>
+    /* ===== Design Tokens ===== */
+    :root{
+      --bg-dark:#0B1020;
+      --bg-ink:#0F1627;
+      --bg-white:#ffffff;
+      --bg-light:#F5F7FF;
+
+      --card-white:#ffffff;
+      --card-dark:rgba(255,255,255,.055);
+      --card-border-dark:rgba(255,255,255,.14);
+      --card-border-light:#E7ECF6;
+
+      --text-dark:#EAF2FF;
+      --text-dark-dim:#C9D6F6;
+      --text-body:#1B2434;
+      --text-body-dim:#4A5875;
+
+      --accent:#00D0FF;
+      --accent-2:#7CFFC4;
+
+      --radius:18px;
+      --shadow-lg:0 30px 60px rgba(0,0,0,.35);
+      --shadow-md:0 18px 36px rgba(10,16,32,.18);
+      --shadow-sm:0 10px 20px rgba(10,16,32,.12);
+      --speed:.35s;
+    }
+
+    body{ background:var(--bg-dark); color:var(--text-dark); }
+    .container{ max-width:1200px; }
+
+    /* ===== Utility buttons ===== */
+    .btn-ghost{ border:1px solid rgba(255,255,255,.22); color:#fff; border-radius:999px; padding:10px 18px; display:inline-flex; align-items:center; gap:8px; transition:all .28s ease; }
+    .btn-ghost:hover{ border-color:transparent; color:#061020; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 14px 32px rgba(0,208,255,.26); }
+
+    .btn-outline{ border:1px solid var(--card-border-light); color:var(--text-body); border-radius:999px; padding:10px 18px; transition:all .25s ease; background:#fff; }
+    .btn-outline:hover{ border-color:transparent; color:#061020; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 14px 32px rgba(0,208,255,.18); }
+
+    /* ===== HERO (kept dark from your template, ensures readable text) ===== */
+    #subheader{ position:relative; overflow:hidden; }
+    #subheader::before{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(6,10,20,.92), rgba(6,10,20,.6) 45%, rgba(6,10,20,.55) 70%, rgba(6,10,20,.85) 100%),
+                 radial-gradient(1100px 520px at 80% -10%, rgba(0,208,255,.16), transparent 60%);
+      z-index:1; pointer-events:none;
+    }
+    #subheader .container{ position:relative; z-index:2; }
+    #subheader h1{ text-shadow:0 6px 22px rgba(0,0,0,.55); }
+
+    /* ===========================================================
+       1) WHITE — Smart, Secure & Mobile Fingerprinting (cards)
+       =========================================================== */
+    #services-ribbon{ background:#fff; color:var(--text-body); }
+    #services-ribbon .subtitle{ color:#0B5ED7; letter-spacing:.8px; }
+    .svc-card{
+      background:var(--card-white); border:1px solid var(--card-border-light); border-radius:16px; box-shadow:var(--shadow-sm);
+      height:100%; transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .svc-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:#DDE5F2; }
+    .svc-icon{ width:60px; height:60px; border-radius:14px; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 20px rgba(10,16,32,.12); }
+    .g-blue{  background:linear-gradient(135deg,#0D6EFD,#00D0FF); }
+    .g-pink{  background:linear-gradient(135deg,#FF6BD6,#6E6BFF); }
+    .g-lime{  background:linear-gradient(135deg,#69FFA9,#15D3FF); }
+    .g-purple{background:linear-gradient(135deg,#6E6BFF,#15D3FF); }
+    .g-gold{  background:linear-gradient(135deg,#FFD76B,#FF6BD6); }
+    .g-cyan{  background:linear-gradient(135deg,#15D3FF,#007BFF); }
+
+    /* ===========================================================
+       2) DARK — Why Choose Us (immediately below services-ribbon)
+       =========================================================== */
+    #why{ background:var(--bg-ink); color:var(--text-dark); }
+    #why .lead{ color:var(--text-dark-dim); }
+    .why-card{
+      background:var(--card-dark); border:1px solid var(--card-border-dark); border-radius:16px; padding:26px; height:100%;
+      transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease; backdrop-filter: blur(6px);
+    }
+    .why-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:rgba(255,255,255,.22); }
+    .why-badge{ width:72px; height:72px; border-radius:16px; display:grid; place-items:center; margin-bottom:12px; background:linear-gradient(135deg,#1FD1FF,#7CFFC4); box-shadow:0 10px 24px rgba(0,0,0,.3); }
+    .why-badge img{ width:30px; filter:brightness(0) invert(1); }
+
+    /* ==================================================================
+       3) DARK — Interactive Service Options (brand-new, not static)
+       Tabs on the left (pills), animated content on the right (panes)
+       ================================================================== */
+    #service-options{ background:var(--bg-dark); color:var(--text-dark); }
+    .opt-shell{ background:var(--card-dark); border:1px solid var(--card-border-dark); border-radius:20px; overflow:hidden; }
+    .opt-tabs{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-right:1px solid var(--card-border-dark);
+    }
+    .opt-tab{
+      display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+      color:var(--text-dark-dim); padding:14px 16px; border:1px solid transparent; border-radius:14px;
+      background:transparent; transition:all .25s ease; font-weight:600;
+    }
+    .opt-tab .dot{ width:10px; height:10px; border-radius:999px; background:rgba(255,255,255,.25); transition:all .25s; }
+    .opt-tab:hover{ color:#fff; background:rgba(255,255,255,.06); }
+    .opt-tab.active{ color:#061020; background:linear-gradient(135deg,var(--accent),var(--accent-2)); border-color:transparent; box-shadow:0 12px 28px rgba(0,208,255,.28); }
+    .opt-tab.active .dot{ background:#061020; }
+
+    .opt-pane{ display:none; padding:28px; animation:fadeSlide .45s ease both; }
+    .opt-pane.active{ display:block; }
+    @keyframes fadeSlide{ from{ opacity:0; transform:translateY(12px) } to{ opacity:1; transform:none } }
+
+    .pane-header{ display:flex; align-items:center; gap:14px; margin-bottom:10px; }
+    .pane-badge{ width:60px; height:60px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,#0DDCFF,#7CFFC4); box-shadow:0 10px 24px rgba(0,0,0,.28); }
+    .pane-badge img{ width:28px; filter:brightness(0) invert(1); }
+    .pane-body{ color:var(--text-dark-dim); }
+    .pane-list li{ margin-bottom:8px; }
+    .pane-cta{ margin-top:12px; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important } }
+  </style>
+</head>
+
+<body>
+    <!-- preloader begin -->
+        <div id="de-loader"></div>
+    <header>
+            <div id="topbar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-flex justify-content-between xs-hide">
+                                <div class="d-flex">
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-location-pin"></i>8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615</a></div>
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-phone"></i>+1 919.878.9988</a></div>
+                                    <div class="topbar-widget me-3"><a href="#"><i class="icofont-envelope"></i>cat@trianglefingerprinting.com</a></div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="social-icons">
+                                        <a href="#"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-youtube fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-pinterest fa-lg"></i></a>
+                                        <a href="#"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="de-flex sm-pt10">
+                            <div class="de-flex-col">
+                                <!-- logo begin -->
+                                <div id="logo">
+                                    <a href="index.html">
+                                        <img class="logo-main" src="images/logo-white.webp" alt="">
+                                        <img class="logo-mobile" src="images/logo-white.webp" alt="">
+                                    </a>
+                                </div>
+                                <!-- logo end -->
+                            </div>
+                            <div class="de-flex-col header-col-mid">
+                                <!-- mainemenu begin -->
+                                <ul id="mainmenu">
+                                    <li><a class="menu-item" href="index.html">Home</a></li>
+                                    <li><a class="menu-item" href="about.html">About Us</a></li>
+                                    <li><a class="menu-item" href="services.html">Services</a></li>
+                                    <li><a class="menu-item" href="location.html">Locations</a>
+                                        <ul>
+                                            <li><a href="oak.html">Oak City</a></li>
+                                            <li><a href="durham.html">Durham City</a></li>
+                                            <li><a href="hill.html">Hill City</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a class="menu-item" href="contact.html">Contact Us</a></li>
+                                </ul>
+                                <!-- mainmenu end -->
+                            </div>
+                            <div class="de-flex-col">
+                                <div class="menu_side_area">
+                                    <!-- <a href="contact.html" class="btn-main fx-slide btn-line me-2"><span>Start For Free</span></a> -->
+                                    <a href="pricing.html" class="btn-main fx-slide"><span>Explore Pricing</span></a>
+                                    <span id="menu-btn"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+  <!-- ===== Hero (kept from your theme) ===== -->
+  <section id="subheader" class="section-dark text-light relative jarallax">
+    <img src="images/background/2.webp" class="jarallax-img" alt="Fingerprint background" aria-hidden="true">
+    <div class="container relative z-2 py-5">
+      <div class="row align-items-end gy-4">
+        <div class="col-lg-9">
+          <h1 class="mb-2">Comprehensive Fingerprinting & Notary Services</h1>
+          <ul class="crumb"><li><a href="index.html">Home</a></li><li class="active">Services</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart, Secure & Mobile Fingerprinting (WHITE) -->
+<section class="ssf-wrap" style="background:#fff;">
+  <style>
+    .ssf-wrap{color:#1b2434}
+    .ssf-container{max-width:1200px;margin:auto;padding:56px 16px}
+    .ssf-sub{color:#0b5ed7;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+    .ssf-title{margin:.25rem 0 1rem;font-weight:800}
+    .ssf-lead{color:#4a5875;margin-bottom:28px}
+    .ssf-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+    .ssf-card{
+      grid-column:span 6;background:#fff;border:1px solid #e7ecf6;border-radius:16px;
+      box-shadow:0 10px 20px rgba(10,16,32,.08);padding:26px;transition:.28s ease;
+    }
+    .ssf-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(10,16,32,.16)}
+    .ssf-card.small{grid-column:span 4}
+    .ssf-icon{
+      width:60px;height:60px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;
+      box-shadow:0 10px 20px rgba(10,16,32,.10);flex:none;
+      background:linear-gradient(135deg,#0d6efd,#00d0ff);
+    }
+    .ssf-icon.pink{background:linear-gradient(135deg,#ff6bd6,#6e6bff)}
+    .ssf-icon.lime{background:linear-gradient(135deg,#69ffa9,#15d3ff)}
+    .ssf-icon.purple{background:linear-gradient(135deg,#6e6bff,#15d3ff)}
+    .ssf-icon.gold{background:linear-gradient(135deg,#ffd76b,#ff6bd6)}
+    .ssf-icon.cyan{background:linear-gradient(135deg,#15d3ff,#007bff)}
+    .ssf-icon svg{width:28px;height:28px;fill:#fff}
+    .ssf-text{color:#4a5875}
+    .ssf-btn{display:inline-block;margin-top:10px;border:1px solid #e0e7f3;border-radius:999px;
+      padding:10px 16px;font-weight:600;color:#0b5ed7;background:#fff;transition:.25s}
+    .ssf-btn:hover{border-color:transparent;background:linear-gradient(135deg,#00d0ff,#7cffc4);color:#061020;box-shadow:0 12px 26px rgba(0,208,255,.2)}
+    @media(max-width:991.98px){.ssf-card.small{grid-column:span 6}}
+    @media(max-width:575.98px){.ssf-card,.ssf-card.small{grid-column:span 12}}
+  </style>
+
+  <div class="ssf-container">
+    <div class="text-center">
+      <div class="ssf-sub">Our Capabilities</div>
+      <h2 class="ssf-title">Smart, Secure &amp; Mobile Fingerprinting</h2>
+      <p class="ssf-lead">Professional solutions for individuals, employers, and international requirements.</p>
+    </div>
+
+    <div class="ssf-grid">
+      <!-- Live Scan -->
+      <article class="ssf-card">
+        <div class="ssf-icon">
+          <!-- fingerprint -->
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v1a1 1 0 1 0 2 0V9a5 5 0 1 1 10 0v1a18 18 0 0 1-3 10 1 1 0 0 0 1.64 1.14A20 20 0 0 0 17 10V9a7 7 0 0 0-7-7Z"/><path d="M7 11a1 1 0 1 0-2 0 15 15 0 0 0 3.3 9.3 1 1 0 1 0 1.6-1.2A13 13 0 0 1 7 11Z"/><path d="M12 6a3 3 0 0 0-3 3v1a12 12 0 0 0 2.2 7.1 1 1 0 0 0 1.6-1.2A10 10 0 0 1 11 10V9a1 1 0 0 1 2 0v1c0 3.4-.9 6.8-2.7 9.7a1 1 0 1 0 1.7 1A19 19 0 0 0 14 10V9a3 3 0 0 0-3-3Z"/></svg>
+        </div>
+        <h4 class="fw-semibold">Live Scan (Digital) Fingerprinting</h4>
+        <p class="ssf-text">Fast, high-quality electronic capture for state, federal, and licensing requirements.</p>
+        <a class="ssf-btn" href="#live-scan">Learn More</a>
+      </article>
+
+      <!-- Ink Card -->
+      <article class="ssf-card">
+        <div class="ssf-icon pink">
+          <!-- id card -->
+          <svg viewBox="0 0 24 24"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v10h18V7H3Z"/><circle cx="7.5" cy="12" r="2.5"/><path d="M12 10h8v2h-8zm0 4h6v2h-6z"/></svg>
+        </div>
+        <h4 class="fw-semibold">Ink Card (FD-258 &amp; Other Cards)</h4>
+        <p class="ssf-text">Rolled impressions for out-of-state, international, or specialty submissions.</p>
+        <a class="ssf-btn" href="#ink-card">Learn More</a>
+      </article>
+
+      <!-- Mobile -->
+      <article class="ssf-card small">
+        <div class="ssf-icon lime">
+          <!-- van -->
+          <svg viewBox="0 0 24 24"><path d="M3 7h10l5 4h3a1 1 0 0 1 1 1v5h-2a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H2v-8a2 2 0 0 1 1-2Z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        </div>
+        <h5 class="fw-semibold">Mobile / On-Site</h5>
+        <p class="ssf-text">We come to your office, clinic, or event—ideal for teams and high-volume onboarding.</p>
+        <a class="ssf-btn" href="#mobile">Learn More</a>
+      </article>
+
+      <!-- Background -->
+      <article class="ssf-card small">
+        <div class="ssf-icon purple">
+          <!-- shield check -->
+          <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/><path d="m10.2 12.8 4.7-4.7 1.4 1.4-6.1 6.1-3.2-3.2 1.4-1.4 1.8 1.8Z" fill="#fff"/></svg>
+        </div>
+        <h5 class="fw-semibold">FBI &amp; State Background Checks</h5>
+        <p class="ssf-text">Electronic or card-based submissions for FBI and state repositories (where applicable).</p>
+        <a class="ssf-btn" href="#background">Learn More</a>
+      </article>
+
+      <!-- Notary -->
+      <article class="ssf-card small">
+        <div class="ssf-icon gold">
+          <!-- stamp -->
+          <svg viewBox="0 0 24 24"><path d="M9 3a3 3 0 1 1 6 0c0 1.5-.8 2.7-2 3.3V11h3a2 2 0 0 1 2 2v2H6v-2a2 2 0 0 1 2-2h3V6.3C9.8 5.7 9 4.5 9 3Z"/><rect x="4" y="17" width="16" height="3" rx="1"/></svg>
+        </div>
+        <h5 class="fw-semibold">Notary Public &amp; I-9 Verification</h5>
+        <p class="ssf-text">Commissioned notaries and I-9 authorized representative services for employers.</p>
+        <a class="ssf-btn" href="#notary">Learn More</a>
+      </article>
+
+      <!-- Apostille -->
+      <article class="ssf-card" style="grid-column:span 12;text-align:center">
+        <div class="ssf-icon cyan" style="margin-inline:auto">
+          <!-- globe -->
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2c2.2 0 4.2 1.1 5.4 2.8H6.6A8 8 0 0 1 12 4Zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2s-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2Zm2.6 4h10.8A8 8 0 0 1 12 20a8 8 0 0 1-5.4-2Z"/></svg>
+        </div>
+        <h5 class="fw-semibold">Apostille &amp; Document Authentication</h5>
+        <p class="ssf-text">End-to-end handling for international document use, including apostille and consular.</p>
+        <a class="ssf-btn" href="#apostille">Learn More</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+  <!-- ==========================================================
+       2) DARK — Why Choose Us (right below the white section)
+       ========================================================== -->
+  <section id="why" class="pt-60 pb-60">
+    <div class="container text-center mb-4">
+      <div class="subtitle">Why Choose Us</div>
+      <h2 class="mb-2 text-white">Fast, Accurate, and Compliant</h2>
+      <p class="lead">Certified technicians, modern equipment, and secure processes—built for reliability and speed.</p>
+    </div>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="why-card h-100">
+            <div class="why-badge"><img src="images/icons-white/settings.png" alt=""></div>
+            <h5 style="color:var(--primary-color)">Certified Technicians</h5>
+            <p>Strict capture standards for clean, scannable prints on the first attempt.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="why-card h-100">
+            <div class="why-badge" style="background:linear-gradient(135deg,#6E6BFF,#15D3FF)"><img src="images/icons-white/cloud-storage.png" alt=""></div>
+            <h5  style="color:var(--primary-color)">Quick Turnaround</h5>
+            <p>Same-day appointments and fast results (agency processing dependent).</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="why-card h-100">
+            <div class="why-badge" style="background:linear-gradient(135deg,#0DDCFF,#7CFFC4)"><img src="images/icons-white/cyber-security.png" alt=""></div>
+            <h5  style="color:var(--primary-color)">Secure Handling</h5>
+            <p>Data privacy and chain-of-custody protocols protect your information end-to-end.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Options (WHITE, interactive tabs) — FIXED -->
+<section id="service-options-white" class="sow-wrap" style="background:#fff;">
+  <style>
+    .sow-wrap{color:#1b2434}
+    .sow-container{max-width:1200px;margin:auto;padding:56px 16px}
+    .sow-shell{border:1px solid #e7ecf6;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 14px 28px rgba(10,16,32,.08);position:relative;z-index:1}
+    .sow-tabs{background:#f7f9ff;border-right:1px solid #e7ecf6;position:relative;z-index:2}
+    .sow-tab{
+      display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+      color:#4a5875;padding:14px 16px;border:1px solid transparent;border-radius:12px;margin:6px 8px;
+      background:#fff;transition:.2s;font-weight:700;cursor:pointer;position:relative;z-index:3
+    }
+    .sow-tab:hover{box-shadow:0 10px 20px rgba(10,16,32,.08)}
+    .sow-tab[aria-selected="true"]{color:#061020;background:linear-gradient(135deg,#00d0ff,#7cffc4);border-color:transparent;box-shadow:0 14px 28px rgba(0,208,255,.22)}
+    .sow-dot{width:10px;height:10px;border-radius:999px;background:#cbd5e1;flex:none}
+    .sow-tab[aria-selected="true"] .sow-dot{background:#061020}
+    .sow-pane{display:none;padding:28px}
+    .sow-pane.is-active{display:block;animation:sowFade .35s ease}
+    @keyframes sowFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .sow-badge{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#0ddcff,#7cffc4);box-shadow:0 10px 22px rgba(10,16,32,.12)}
+    .sow-badge svg{width:28px;height:28px;fill:#fff}
+    .sow-head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+    .sow-muted{color:#64748b}
+    .sow-list li{margin-bottom:8px}
+    .sow-cta{display:inline-block;margin-top:12px;border:1px solid #e0e7f3;border-radius:999px;padding:10px 16px;font-weight:700;color:#0b5ed7;background:#fff;transition:.25s}
+    .sow-cta:hover{border-color:transparent;background:linear-gradient(135deg,#00d0ff,#7cffc4);color:#061020;box-shadow:0 12px 26px rgba(0,208,255,.2)}
+  </style>
+
+  <div class="sow-container">
+    <div class="sow-shell" role="tablist" aria-label="Service options">
+      <div class="row g-0">
+        <!-- Tabs -->
+        <div class="col-lg-4 sow-tabs p-2">
+          <button type="button" class="sow-tab" data-pane="sow-live" role="tab" aria-selected="true"><span class="sow-dot"></span> Live Scan (Digital)</button>
+          <button type="button" class="sow-tab" data-pane="sow-ink" role="tab" aria-selected="false"><span class="sow-dot"></span> Ink Card (FD-258)</button>
+          <button type="button" class="sow-tab" data-pane="sow-mobile" role="tab" aria-selected="false"><span class="sow-dot"></span> Mobile / On-Site</button>
+          <button type="button" class="sow-tab" data-pane="sow-bg" role="tab" aria-selected="false"><span class="sow-dot"></span> FBI &amp; State Background</button>
+          <button type="button" class="sow-tab" data-pane="sow-i9" role="tab" aria-selected="false"><span class="sow-dot"></span> Notary &amp; I-9</button>
+          <button type="button" class="sow-tab" data-pane="sow-apostille" role="tab" aria-selected="false"><span class="sow-dot"></span> Apostille &amp; Auth.</button>
+        </div>
+
+        <!-- Panes -->
+        <div class="col-lg-8 p-2">
+          <!-- Live -->
+          <div class="sow-pane is-active" id="sow-live" role="tabpanel" aria-labelledby="tab-live">
+            <div class="sow-head">
+              <div class="sow-badge">
+                <!-- fingerprint -->
+                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v1a1 1 0 1 0 2 0V9a5 5 0 1 1 10 0v1a18 18 0 0 1-3 10 1 1 0 0 0 1.64 1.14A20 20 0 0 0 17 10V9a7 7 0 0 0-7-7Z"/><path d="M7 11a1 1 0 1 0-2 0 15 15 0 0 0 3.3 9.3 1 1 0 1 0 1.6-1.2A13 13 0 0 1 7 11Z"/><path d="M12 6a3 3 0 0 0-3 3v1a12 12 0 0 0 2.2 7.1 1 1 0 0 0 1.6-1.2A10 10 0 0 1 11 10V9a1 1 0 0 1 2 0v1c0 3.4-.9 6.8-2.7 9.7a1 1 0 1 0 1.7 1A19 19 0 0 0 14 10V9a3 3 0 0 0-3-3Z"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">Live Scan (Digital) Fingerprinting</h4>
+                <small class="sow-muted">Licensing • Employment • Volunteers • Government</small>
+              </div>
+            </div>
+            <p class="sow-muted">Optimized for modern submissions with instant image quality checks and conditional routing.</p>
+            <ul class="sow-list">
+              <li>High-resolution capture with NFIQ quality scoring</li>
+              <li>Electronic submission where available; print-to-card if required</li>
+              <li>Supports multiple ORI/UEID and agency formats</li>
+            </ul>
+            <a class="sow-cta" href="pricing.html">Book Live Scan</a>
+          </div>
+
+          <!-- Ink -->
+          <div class="sow-pane" id="sow-ink" role="tabpanel">
+            <div class="sow-head">
+              <div class="sow-badge" style="background:linear-gradient(135deg,#ff6bd6,#6e6bff)">
+                <svg viewBox="0 0 24 24"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2v10h18V7H3Z"/><circle cx="7.5" cy="12" r="2.5"/><path d="M12 10h8v2h-8zm0 4h6v2h-6z"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">Ink Card (FD-258 &amp; Other Cards)</h4>
+                <small class="sow-muted">Out-of-State • International • Specialty</small>
+              </div>
+            </div>
+            <p class="sow-muted">Traditional rolled impressions with clean outputs and optional shipping to your destination.</p>
+            <ul class="sow-list">
+              <li>Reprints included if needed</li>
+              <li>Multiple copies available on request</li>
+              <li>We can ship to agencies or recipients</li>
+            </ul>
+            <a class="sow-cta" href="contact.html">Book Ink Card</a>
+          </div>
+
+          <!-- Mobile -->
+          <div class="sow-pane" id="sow-mobile" role="tabpanel">
+            <div class="sow-head">
+              <div class="sow-badge" style="background:linear-gradient(135deg,#69ffa9,#15d3ff)">
+                <svg viewBox="0 0 24 24"><path d="M3 7h10l5 4h3a1 1 0 0 1 1 1v5h-2a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H2v-8a2 2 0 0 1 1-2Z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">Mobile / On-Site Fingerprinting</h4>
+                <small class="sow-muted">Teams • Clinics • Schools • Events</small>
+              </div>
+            </div>
+            <p class="sow-muted">We set up on-site and process groups with minimal downtime and clear rosters.</p>
+            <ul class="sow-list">
+              <li>Rapid setup with minimal disruption</li>
+              <li>Bulk capture workflows and roster management</li>
+              <li>Flexible invoicing and after-hours availability</li>
+            </ul>
+            <a class="sow-cta" href="contact.html">Request Group Quote</a>
+          </div>
+
+          <!-- Background -->
+          <div class="sow-pane" id="sow-bg" role="tabpanel">
+            <div class="sow-head">
+              <div class="sow-badge" style="background:linear-gradient(135deg,#6e6bff,#15d3ff)">
+                <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"/><path d="m10.2 12.8 4.7-4.7 1.4 1.4-6.1 6.1-3.2-3.2 1.4-1.4 1.8 1.8Z" fill="#fff"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">FBI &amp; State Background Checks</h4>
+                <small class="sow-muted">FBI • State Repositories</small>
+              </div>
+            </div>
+            <p class="sow-muted">Guided submissions with clear instructions, timelines, and documentation templates.</p>
+            <ul class="sow-list">
+              <li>Electronic or card-based submissions</li>
+              <li>Status guidance and processing timelines</li>
+            </ul>
+            <a class="sow-cta" href="contact.html">Start Background Check</a>
+          </div>
+
+          <!-- Notary & I-9 -->
+          <div class="sow-pane" id="sow-i9" role="tabpanel">
+            <div class="sow-head">
+              <div class="sow-badge" style="background:linear-gradient(135deg,#ffd76b,#ff6bd6)">
+                <svg viewBox="0 0 24 24"><path d="M9 3a3 3 0 1 1 6 0c0 1.5-.8 2.7-2 3.3V11h3a2 2 0 0 1 2 2v2H6v-2a2 2 0 0 1 2-2h3V6.3C9.8 5.7 9 4.5 9 3Z"/><rect x="4" y="17" width="16" height="3" rx="1"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">Notary Public &amp; I-9 Verification</h4>
+                <small class="sow-muted">Authorized Representatives • Employers</small>
+              </div>
+            </div>
+            <p class="sow-muted">Commissioned notaries and I-9 authorized representative services for remote and local hires.</p>
+            <ul class="sow-list">
+              <li>Employer-authorized I-9 completion (Section 2)</li>
+              <li>Document photocopy &amp; certification guidance</li>
+            </ul>
+            <a class="sow-cta" href="contact.html">Schedule Notary / I-9</a>
+          </div>
+
+          <!-- Apostille -->
+          <div class="sow-pane" id="sow-apostille" role="tabpanel">
+            <div class="sow-head">
+              <div class="sow-badge" style="background:linear-gradient(135deg,#15d3ff,#007bff)">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 2c2.2 0 4.2 1.1 5.4 2.8H6.6A8 8 0 0 1 12 4Zm-8 8c0-.7.1-1.4.3-2h15.4c.2.6.3 1.3.3 2s-.1 1.4-.3 2H4.3c-.2-.6-.3-1.3-.3-2Zm2.6 4h10.8A8 8 0 0 1 12 20a8 8 0 0 1-5.4-2Z"/></svg>
+              </div>
+              <div>
+                <h4 class="mb-0">Apostille &amp; Document Authentication</h4>
+                <small class="sow-muted">Hague • Consular</small>
+              </div>
+            </div>
+            <p class="sow-muted">End-to-end pathway planning for documents destined for international use.</p>
+            <ul class="sow-list">
+              <li>State, federal, and consular options explained</li>
+              <li>Courier / expedite options available</li>
+            </ul>
+            <a class="sow-cta" href="contact.html">Get Apostille Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scoped tabs script (event delegation + hash support) -->
+  <script>
+    (function(){
+      const root = document.getElementById('service-options-white');
+      if(!root) return;
+
+      const tabs  = root.querySelectorAll('.sow-tab');
+      const panes = root.querySelectorAll('.sow-pane');
+
+      function activate(id){
+        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.pane === id ? 'true' : 'false'));
+        panes.forEach(p => p.classList.toggle('is-active', p.id === id));
+      }
+
+      // Event delegation (click works even if children inside are clicked)
+      root.addEventListener('click', (e) => {
+        const tab = e.target.closest('.sow-tab');
+        if(!tab || !root.contains(tab)) return;
+        activate(tab.dataset.pane);
+      });
+
+      // Hash deep-linking (e.g., #sow-ink)
+      const hashId = location.hash && location.hash.slice(1);
+      if (hashId && root.querySelector('#'+CSS.escape(hashId))) {
+        activate(hashId);
+        root.scrollIntoView({behavior:'smooth', block:'start'});
+      } else {
+        // default to first
+        activate('sow-live');
+      }
+    })();
+  </script>
+</section>
+
+
+  <!-- ===== Minimal Footer (keep your site footer if you prefer) ===== -->
+  <!-- footer begin -->
+        <footer class="section-dark">
+            <div class="container">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-sm-6">
+                        <img src="images/logo-white.webp" class="logo-footer" alt="">
+                        <div class="spacer-20"></div>
+                                                <p>At Triangle Fingerprinting, we deliver professional, high‑quality fingerprinting, notary, and document services. From live scan to apostille, our team helps you move forward quickly and securely.</p>
+                        <div class="social-icons mb-sm-30">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-12 order-lg-1 order-sm-2">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="widget">
+                                    <h5>Company</h5>
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="services.html">Our Services</a></li>
+                                        <li><a href="gallery.html">Gallery</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <div class="widget">
+                                    <h5>Our Services</h5>
+                                    <ul>
+                                        <li><a href="service-single.html">Network Security</a></li>
+                                        <li><a href="service-single.html">Data Encryption</a></li>
+                                        <li><a href="service-single.html">Identity & Access</a></li>
+                                        <li><a href="service-single.html">Security Monitoring</a></li>
+                                        <li><a href="service-single.html">Backup & Recovery</a></li>
+                                        <li><a href="service-single.html">Security Configuration</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 order-lg-2 order-sm-1">
+                        <div class="widget">
+                            <h5>Contact Us</h5>
+
+                            <div class="fw-bold text-white">
+                                <i class="icofont-location-pin me-2 id-color"></i>Head Office
+                            </div>
+                            8480 Suite 200 Honeycutt Rd. Raleigh, NC 27615
+
+                            <div class="spacer-20"></div>
+
+                            <div class="fw-bold text-white">
+                                <i class="icofont-phone me-2 id-color"></i>Call Us
+                            </div>
+                            +1 919.878.9988
+
+                            <div class="spacer-20"></div>
+
+                            <div class="fw-bold text-white">
+                                <i class="icofont-envelope me-2 id-color"></i>Email Us
+                            </div>
+                            cat@trianglefingerprinting.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subfooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="de-flex">
+                                <div class="de-flex-col">
+                                    &copy; 2025 - Triangle Fingerptinting
+                                </div>
+                                <ul class="menu-simple">
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Lightweight tabs for the Service Options section
+    (function(){
+      const tabs  = document.querySelectorAll('.opt-tab');
+      const panes = document.querySelectorAll('.opt-pane');
+      function activate(id){
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.pane === id));
+        panes.forEach(p => p.classList.toggle('active', p.id === id));
+      }
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => activate(tab.dataset.pane));
+      });
+
+      // Optional: link anchors like #opt-live from "Learn More" buttons
+      if (location.hash){
+        const h = location.hash.replace('#','');
+        const targetPane = document.getElementById(h);
+        if (targetPane){
+          activate(h);
+          // smooth scroll to the section
+          document.getElementById('service-options')?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }
+    })();
+  </script>
+
+  <!-- Your theme scripts (WOW, jarallax, etc.) -->
+  <script src="js/plugins.js"></script>
+  <script src="js/designesia.js"></script>
+</body>
+</html>
